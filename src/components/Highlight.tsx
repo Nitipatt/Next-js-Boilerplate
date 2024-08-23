@@ -11,10 +11,10 @@ const Highlight: React.FC = () => {
   return (
     <section className="px-24">
       <h2 className="mb-16 text-24 leading-32 text-white">Highlight</h2>
-      <div className="flex gap-12 overflow-x-auto">
+      <div className="flex w-full flex-col gap-12">
         {highlights.map((highlight, index) => (
           <Link href={highlight.post_url} key={index} className="shrink-0">
-            <div className="w-312 overflow-hidden rounded-lg bg-pantip-purple-dark">
+            <div className="w-full overflow-hidden rounded-lg bg-pantip-purple-dark">
               <img
                 src={highlight.image_url[0] || ''}
                 alt={highlight.name}
