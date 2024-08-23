@@ -57,6 +57,7 @@ export default {
       },
       height: {
         40: '40px',
+        176: '176px',
       },
     },
   },

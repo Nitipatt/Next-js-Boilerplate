@@ -65,5 +65,13 @@ export default withSentryConfig(
 
     // Disable Sentry telemetry
     telemetry: true,
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'http',
+          hostname: 'ptcdn.info',
+        },
+      ],
+    },
   },
 );

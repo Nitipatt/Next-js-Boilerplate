@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -16,7 +15,7 @@ const Highlight: React.FC = () => {
         {highlights.map((highlight, index) => (
           <Link href={highlight.post_url} key={index} className="shrink-0">
             <div className="w-312 overflow-hidden rounded-lg bg-pantip-purple-dark">
-              <Image
+              <img
                 src={highlight.image_url[0] || ''}
                 alt={highlight.name}
                 width={312}
