@@ -64,6 +64,6 @@ export default withSentryConfig(
     automaticVercelMonitors: true,
 
     // Disable Sentry telemetry
-    telemetry: false,
+    telemetry: true,
   },
 );

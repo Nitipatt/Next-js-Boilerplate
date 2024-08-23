@@ -4,8 +4,11 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { unstable_setRequestLocale } from 'next-intl/server';
 
-import { DemoBadge } from '@/components/DemoBadge';
+import BottomMenu from '@/components/BottomMenu'; // Added import
+import SearchBar from '@/components/SearchBar'; // Added import
 import { AppConfig } from '@/utils/AppConfig';
+
+import ReduxProvider from './ReduxProvider';
 
 export const metadata: Metadata = {
   icons: [
@@ -36,25 +39,27 @@ export function generateStaticParams() {
   return AppConfig.locales.map(locale => ({ locale }));
 }
 
-export default function RootLayout(props: {
+export default function RootLayout({
+  children,
+  params: { locale },
+}: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  unstable_setRequestLocale(props.params.locale);
-
-  // Using internationalization in Client Components
+  unstable_setRequestLocale(locale);
   const messages = useMessages();
 
   return (
-    <html lang={props.params.locale}>
-      <body>
-        <NextIntlClientProvider
-          locale={props.params.locale}
-          messages={messages}
-        >
-          {props.children}
-
-          <DemoBadge />
+    <html lang={locale}>
+      <body className="flex h-screen flex-col bg-pantip-purple-light pt-12">
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <ReduxProvider>
+            <SearchBar />
+            {children}
+            <section className="px-24">
+              <BottomMenu />
+            </section>
+          </ReduxProvider>
         </NextIntlClientProvider>
       </body>
     </html>
